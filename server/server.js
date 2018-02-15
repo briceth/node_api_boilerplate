@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require('./middleware/appMiddleware')(app)
 const api = require('./api/api')
 const config = require('../config/config')
-//const auth = require('./auth/routes')
+const auth = require('./auth/routes')
 const helper = require('./utils/helpers')
 
 mongoose.connect(config.db.url)
@@ -14,7 +14,7 @@ mongoose.connection.on('error', err => {
 
 // setup the api
 app.use('/api', api)
-//app.use('/auth', auth)
+app.use('/auth', auth)
 
 // export the app for testing
 module.exports = app
